@@ -1,42 +1,32 @@
-<?php include 'config/koneksi.php'; ?>
-<!DOCTYPE html>
-<html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dokumentasi & Pengumuman - Study Club Software House</title>
-<link rel="stylesheet" href="assets/css/style.css">
-</head>
-<body>
+<?php
+include 'config/koneksi.php';
+$judul = 'Dokumentasi & Pengumuman';
+include 'component/layout/head.php';
+?>
 
-<?php include 'component\layout\navbar\index.php'; ?>
-
-<section class="section">
-    <h2>Dokumentasi & Pengumuman</h2>
-    <div class="doc-list">
+<?php section_open(); section_title('Dokumentasi & Pengumuman'); ?>
+    <div class="mx-auto flex max-w-[900px] flex-col gap-4 xl:mx-0">
         <?php
         $q = mysqli_query($koneksi, "SELECT * FROM dokumentasi ORDER BY tanggal DESC");
-        if (mysqli_num_rows($q) > 0):
+        if ($q && mysqli_num_rows($q) > 0):
             while ($row = mysqli_fetch_assoc($q)):
                 $ext = strtoupper(pathinfo($row['file'], PATHINFO_EXTENSION));
         ?>
-        <div class="doc-item">
-            <div class="doc-ext"><?= htmlspecialchars($ext) ?></div>
-            <div class="doc-info">
-                <h3><?= htmlspecialchars($row['judul']) ?></h3>
+        <div class="reveal flex flex-wrap items-center gap-4 rounded-xl border border-line bg-surface p-4 sm:flex-nowrap sm:p-5">
+            <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg border border-primary/30 bg-primary/10 text-xs font-bold text-primary"><?= htmlspecialchars($ext) ?></div>
+            <div class="min-w-0 flex-1 basis-[200px]">
+                <h3 class="text-[1.05rem] text-white"><?= htmlspecialchars($row['judul']) ?></h3>
                 <?php if (!empty($row['deskripsi'])): ?>
-                    <p><?= nl2br(htmlspecialchars($row['deskripsi'])) ?></p>
+                    <p class="mt-1 text-[.9rem] text-muted"><?= nl2br(htmlspecialchars($row['deskripsi'])) ?></p>
                 <?php endif; ?>
-                <div class="meta"><?= date('d M Y', strtotime($row['tanggal'])) ?></div>
+                <div class="mt-2 text-[.8rem] text-[#6b7386]"><?= date('d M Y', strtotime($row['tanggal'])) ?></div>
             </div>
-            <a href="uploads/dokumentasi/<?= htmlspecialchars($row['file']) ?>" class="btn btn-primary btn-sm" download>Download</a>
+            <a href="uploads/dokumentasi/<?= htmlspecialchars($row['file']) ?>" class="<?= ui('btnSm') ?>" download>Download</a>
         </div>
-        <?php endwhile; else: ?>
-            <p>Belum ada dokumentasi atau pengumuman.</p>
-        <?php endif; ?>
+        <?php endwhile; else:
+            empty_state('📄', 'Belum ada dokumentasi', 'Dokumentasi dan pengumuman Study Club akan muncul di sini.');
+        endif; ?>
     </div>
-</section>
+<?php section_close(); ?>
 
-<footer>&copy; <?= date('Y') ?> Study Club Software House.</footer>
-</body>
-</html>
+<?php include 'component/layout/footer.php'; ?>

@@ -1,174 +1,132 @@
-<?php include 'config/koneksi.php'; ?>
-<!DOCTYPE html>
-<html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Study Club Software House</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="assets/css/style.css?v=2">
-</head>
-<body>
+<?php
+include 'config/koneksi.php';
+$judul = null; // beranda pakai judul default
+$footerExtra = ' Dibuat untuk belajar.';
+include 'component/layout/head.php';
+?>
 
-<?php include 'component\layout\navbar\index.php'; ?>
-
-<div class="ticker-wrap">
-    <div class="ticker">
-        <span>💻 BELAJAR CODING BARENG &nbsp; &bull; &nbsp; 🚀 BANGUN PORTOFOLIO NYATA &nbsp; &bull; &nbsp; 🤝 KOMUNITAS SUPORTIF &nbsp; &bull; &nbsp; 📢 PENDAFTARAN ANGGOTA BARU DIBUKA &nbsp; &bull; &nbsp; 💻 BELAJAR CODING BARENG &nbsp; &bull; &nbsp; 🚀 BANGUN PORTOFOLIO NYATA &nbsp; &bull; &nbsp; 🤝 KOMUNITAS SUPORTIF &nbsp; &bull; &nbsp; 📢 PENDAFTARAN ANGGOTA BARU DIBUKA &nbsp; &bull; &nbsp;</span>
+<!-- Ticker -->
+<div class="w-full overflow-hidden whitespace-nowrap border-b border-line bg-gradient-to-r from-dark via-[#1a1d28] to-dark py-2 sm:py-2.5">
+    <div class="inline-block animate-ticker">
+        <span class="inline-block font-display text-[.78rem] font-semibold tracking-wide text-primary sm:text-[.88rem]">💻 BELAJAR CODING BARENG &nbsp; &bull; &nbsp; 🚀 BANGUN PORTOFOLIO NYATA &nbsp; &bull; &nbsp; 🤝 KOMUNITAS SUPORTIF &nbsp; &bull; &nbsp; 📢 PENDAFTARAN ANGGOTA BARU DIBUKA &nbsp; &bull; &nbsp; 💻 BELAJAR CODING BARENG &nbsp; &bull; &nbsp; 🚀 BANGUN PORTOFOLIO NYATA &nbsp; &bull; &nbsp; 🤝 KOMUNITAS SUPORTIF &nbsp; &bull; &nbsp; 📢 PENDAFTARAN ANGGOTA BARU DIBUKA &nbsp; &bull; &nbsp;</span>
     </div>
 </div>
-<section class="hero">
-    <div>
-        <div class="hero-badge"><span class="live-dot"></span> <span class="live-label">LIVE</span> <span id="badge-text">Semangat belajar, raih prestasi!</span></div>
-        <h1>Belajar coding,<br>bangun <span class="accent-line">karya nyata.</span></h1>
-        <p>Study Club Software House adalah wadah mahasiswa belajar pemrograman bareng, saling berbagi ilmu, dan menghasilkan karya yang bisa dipakai orang lain.</p>
-        <div class="hero-actions">
-            <a href="daftar.php" class="btn">Daftar Jadi Anggota</a>
-            <a href="karya.php" class="btn btn-outline">Lihat Karya Mahasiswa</a>
-        </div>
-    </div>
-    <div class="code-window">
-        <div class="cw-head"><span></span><span></span><span></span></div>
-        <pre class="cw-body" id="typingCode"></pre>
-    </div>
-</section>
 
-<section class="section">
-    <h2>Kenapa Gabung Study Club?</h2>
-    <div class="grid">
-        <div class="card feature-card">
-            <div class="f-icon">&lt;/&gt;</div>
-            <h3>Belajar Bareng</h3>
-            <p>Sharing session rutin seputar bahasa pemrograman, framework, dan tools yang dipakai di industri.</p>
+<!-- Hero -->
+<section class="grid grid-cols-1 items-center gap-8 bg-dark px-[5%] pb-12 pt-10 text-white sm:px-[6%] sm:pb-[60px] sm:pt-[50px] min-[860px]:grid-cols-[minmax(0,1.1fr)_minmax(0,.9fr)] min-[860px]:gap-9 lg:pb-20 lg:pt-[70px] xl:gap-[50px] xl:px-[8%] xl:pb-[100px] xl:pt-[90px]">
+    <div class="min-w-0">
+        <div class="mb-[22px] inline-flex max-w-full flex-wrap items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1.5 text-[.76rem] font-medium text-primary animate-badgeGlow sm:px-3.5 sm:text-[.82rem]">
+            <span class="inline-block h-[7px] w-[7px] shrink-0 rounded-full bg-mint shadow-[0_0_6px_#4fd1a5] animate-dotBlink"></span>
+            <span class="text-[.72rem] font-bold tracking-[.06em] text-mint max-[380px]:hidden">LIVE</span>
+            <span id="badge-text" class="inline-block animate-badgeFade">Semangat belajar, raih prestasi!</span>
         </div>
-        <div class="card feature-card">
-            <div class="f-icon">&#9733;</div>
-            <h3>Portofolio Nyata</h3>
-            <p>Setiap anggota didorong bikin karya yang bisa ditampilkan di halaman Karya Mahasiswa.</p>
+        <h1 class="mb-[18px] text-[clamp(1.9rem,5vw,2.6rem)] font-semibold leading-[1.2] max-[380px]:text-[1.7rem]">Belajar coding,<br>bangun <span class="text-primary">karya nyata.</span></h1>
+        <p class="mb-[30px] max-w-[46ch] text-[clamp(.95rem,2.4vw,1.05rem)] text-muted">Study Club Software House adalah wadah mahasiswa belajar pemrograman bareng, saling berbagi ilmu, dan menghasilkan karya yang bisa dipakai orang lain.</p>
+        <div class="flex flex-col gap-3.5 sm:flex-row sm:flex-wrap">
+            <a href="daftar.php" class="<?= ui('btn') ?>">Daftar Jadi Anggota</a>
+            <a href="karya.php" class="<?= ui('btnOutline') ?>">Lihat Karya Mahasiswa</a>
         </div>
-        <div class="card feature-card">
-            <div class="f-icon">&#128101;</div>
-            <h3>Komunitas Suportif</h3>
-            <p>Tempat bertanya dan berkembang bareng teman-teman yang punya minat sama di dunia software.</p>
+    </div>
+
+    <div class="w-full max-w-full min-w-0 overflow-hidden rounded-xl border border-line bg-surface animate-codeGlow">
+        <div class="flex gap-[7px] border-b border-line bg-[#171a22] px-4 py-3">
+            <span class="h-[11px] w-[11px] rounded-full bg-[#ef5a5a] animate-dotPulse"></span>
+            <span class="h-[11px] w-[11px] rounded-full bg-[#f2c94c] animate-dotPulse [animation-delay:.2s]"></span>
+            <span class="h-[11px] w-[11px] rounded-full bg-mint animate-dotPulse [animation-delay:.4s]"></span>
         </div>
+        <pre id="typingCode" class="m-0 h-[170px] overflow-hidden whitespace-pre-wrap break-words p-4 font-mono text-[.76rem] leading-[1.75] sm:h-[190px] sm:p-[22px] sm:text-[.86rem] sm:leading-[1.9] lg:h-[210px]"></pre>
     </div>
 </section>
 
+<!-- Kenapa Gabung -->
+<?php section_open('surface'); section_title('Kenapa Gabung Study Club?'); ?>
+    <div class="<?= ui('grid') ?>">
+        <?php
+        $fitur = [
+            ['&lt;/&gt;',  'Belajar Bareng',      'Sharing session rutin seputar bahasa pemrograman, framework, dan tools yang dipakai di industri.'],
+            ['&#9733;',    'Portofolio Nyata',    'Setiap anggota didorong bikin karya yang bisa ditampilkan di halaman Karya Mahasiswa.'],
+            ['&#128101;',  'Komunitas Suportif',  'Tempat bertanya dan berkembang bareng teman-teman yang punya minat sama di dunia software.'],
+        ];
+        foreach ($fitur as [$ikon, $judulF, $desc]): ?>
+        <div class="<?= ui('featureCard') ?>">
+            <div class="mb-4 flex h-[42px] w-[42px] items-center justify-center rounded-[10px] bg-primary/10 text-[1.2rem] text-primary"><?= $ikon ?></div>
+            <h3 class="mb-2 text-[1.05rem]"><?= $judulF ?></h3>
+            <p class="text-[.92rem] text-muted"><?= $desc ?></p>
+        </div>
+        <?php endforeach; ?>
+    </div>
+<?php section_close(); ?>
 
-<section class="section">
-    <h2>Berita Terbaru</h2>
-    <div class="grid">
+<!-- Berita Terbaru -->
+<?php section_open(); section_title('Berita Terbaru'); ?>
+    <div class="<?= ui('grid') ?>">
         <?php
         $q = mysqli_query($koneksi, "SELECT * FROM berita ORDER BY tanggal DESC LIMIT 3");
-        if (mysqli_num_rows($q) > 0):
+        if ($q && mysqli_num_rows($q) > 0):
             while ($row = mysqli_fetch_assoc($q)):
                 $gambar = $row['gambar'] ? 'uploads/berita/' . $row['gambar'] : 'https://placehold.co/400x200?text=Berita';
-        ?>
-       <a href="detail_berita.php?id=<?= $row['id'] ?>" class="card">
-   <div class="card-img-wrap">
-    <img src="<?= htmlspecialchars($gambar) ?>" alt="berita">
-    <span class="card-date"><?= date('d M Y', strtotime($row['tanggal'])) ?></span>
-    <h3 class="card-title-overlay"><?= htmlspecialchars($row['judul']) ?></h3>
-</div>
-<div class="card-body">
-    <p><?= htmlspecialchars(mb_strimwidth($row['isi'], 0, 90, '...')) ?></p>
-    <span class="card-btn">Baca Selengkapnya &rarr;</span>
-</div>
-</a>
-        <?php endwhile; else: ?>
-            <p>Belum ada berita.</p>
-        <?php endif; ?>
+                media_card('detail_berita.php?id=' . $row['id'], $gambar, 'berita', date('d M Y', strtotime($row['tanggal'])), $row['judul'], mb_strimwidth($row['isi'], 0, 90, '...'), 'Baca Selengkapnya');
+            endwhile;
+        else:
+            empty_state('📰', 'Belum ada berita', 'Berita dan kegiatan terbaru Study Club akan muncul di sini.');
+        endif; ?>
     </div>
-</section>
+<?php section_close(); ?>
 
-<section class="section">   
-    <h2>Karya Mahasiswa Terbaru</h2>
-    <div class="grid">
+<!-- Karya Terbaru -->
+<?php section_open('surface'); section_title('Karya Mahasiswa Terbaru'); ?>
+    <div class="<?= ui('grid') ?>">
         <?php
         $q2 = mysqli_query($koneksi, "SELECT * FROM karya ORDER BY tanggal DESC LIMIT 3");
-        if (mysqli_num_rows($q2) > 0):
+        if ($q2 && mysqli_num_rows($q2) > 0):
             while ($row = mysqli_fetch_assoc($q2)):
                 $gambar = $row['gambar'] ? 'uploads/karya/' . $row['gambar'] : 'https://placehold.co/400x200?text=Karya';
-        ?>
-    <a href="detail_karya.php?id=<?= $row['id'] ?>" class="card">
-    <div class="card-img-wrap">
-    <img src="<?= htmlspecialchars($gambar) ?>" alt="karya">
-    <span class="card-date"><?= date('d M Y', strtotime($row['tanggal'])) ?></span>
-    <h3 class="card-title-overlay"><?= htmlspecialchars($row['judul_karya']) ?></h3>
-</div>
-<div class="card-body">
-    <p>Oleh: <?= htmlspecialchars($row['nama_pembuat']) ?></p>
-    <span class="card-btn">Lihat Karya &rarr;</span>
-</div>
-</a>
-        <?php endwhile; else: ?>
-            <p>Belum ada karya yang diupload.</p>
-        <?php endif; ?>
+                media_card('detail_karya.php?id=' . $row['id'], $gambar, 'karya', date('d M Y', strtotime($row['tanggal'])), $row['judul_karya'], 'Oleh: ' . $row['nama_pembuat'], 'Lihat Karya');
+            endwhile;
+        else:
+            empty_state('💻', 'Belum ada karya', 'Karya mahasiswa akan tampil di sini setelah diupload.', 'daftar.php', 'Daftar Jadi Anggota');
+        endif; ?>
     </div>
-</section>
+<?php section_close(); ?>
 
-<section class="section" style="text-align:center;">
-    <h2 style="text-align:center;">Hubungi Kami</h2>
-    <p style="color:var(--text-muted); max-width:50ch; margin:0 auto 40px;">
-        Punya pertanyaan atau mau gabung? Langsung aja hubungi kami lewat kontak di bawah ini.
-    </p>
-    <div class="contact-grid">
-        <a href="https://wa.me/6281234567890" target="_blank" class="contact-item">
-            <div class="contact-icon">&#128241;</div>
-            <h3>WhatsApp</h3>
-            <p>+62 812-3456-7890</p>
+<!-- Hubungi Kami -->
+<?php section_open(); section_title('Hubungi Kami', 'Punya pertanyaan atau mau gabung? Langsung aja hubungi kami lewat kontak di bawah ini.', true); ?>
+    <div class="<?= ui('contactGrid') ?>">
+        <?php
+        $kontak = [
+            ['https://wa.me/6281234567890', '&#128241;', 'WhatsApp', '+62 812-3456-7890', true],
+            ['mailto:studyclub@darmajaya.ac.id', '&#9993;', 'Email', 'studyclub@darmajaya.ac.id', false],
+            ['https://www.instagram.com/darmajayashclub/', '&#128247;', 'Instagram', '@darmajayashclub', true],
+        ];
+        foreach ($kontak as [$href, $ikon, $nama, $teks, $blank]): ?>
+        <a href="<?= $href ?>" <?= $blank ? 'target="_blank" rel="noopener"' : '' ?> class="<?= ui('contactItem') ?>">
+            <div class="mx-auto mb-3.5 flex h-[52px] w-[52px] items-center justify-center rounded-full bg-primary/10 text-[1.4rem] text-primary"><?= $ikon ?></div>
+            <h3 class="mb-1.5 text-[1.05rem] text-white"><?= $nama ?></h3>
+            <p class="text-[.9rem] text-muted"><?= $teks ?></p>
         </a>
-        <a href="mailto:studyclub@darmajaya.ac.id" class="contact-item">
-            <div class="contact-icon">&#9993;</div>
-            <h3>Email</h3>
-            <p>studyclub@darmajaya.ac.id</p>
-        </a>
-       <a href="https://www.instagram.com/darmajayashclub/" target="_blank" class="contact-item">
-    <div class="contact-icon">&#128247;</div>
-    <h3>Instagram</h3>
-    <p>@darmajayashclub</p>
-</a>
+        <?php endforeach; ?>
     </div>
-</section>
+<?php section_close(); ?>
 
-<footer>
-    &copy; <?= date('Y') ?> Study Club Software House. Dibuat untuk belajar.
-</footer>
+
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const items = document.querySelectorAll('.fade-in, .section h2, .card, .contact-item, .feature-card');
-    items.forEach(el => el.classList.add('fade-in'));
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-            } else {
-                entry.target.classList.remove('visible');
-            }
-        });
-    }, { threshold: 0.15 });
-
-    items.forEach(el => observer.observe(el));
-});
-</script>
-<script>
+// Efek mengetik di code window
 const codeSnippets = [
-`<span class="c1">class</span> <span class="c2">StudyClub</span> {
-    <span class="c1">function</span> <span class="c3">belajar</span>() {
-        <span class="c4">// coding, diskusi, project</span>
-        <span class="c1">return</span> <span class="c2">'karya nyata'</span>;
+`<span class="text-violet-400">class</span> <span class="text-mint">StudyClub</span> {
+    <span class="text-violet-400">function</span> <span class="text-primary">belajar</span>() {
+        <span class="text-muted">// coding, diskusi, project</span>
+        <span class="text-violet-400">return</span> <span class="text-mint">'karya nyata'</span>;
     }
 }`,
-`<span class="c1">function</span> <span class="c3">buatKarya</span>(<span class="c2">ide</span>) {
-    <span class="c4">// riset, desain, ngoding</span>
-    <span class="c1">const</span> hasil = ide.<span class="c3">wujudkan</span>();
-    <span class="c1">return</span> hasil;
+`<span class="text-violet-400">function</span> <span class="text-primary">buatKarya</span>(<span class="text-mint">ide</span>) {
+    <span class="text-muted">// riset, desain, ngoding</span>
+    <span class="text-violet-400">const</span> hasil = ide.<span class="text-primary">wujudkan</span>();
+    <span class="text-violet-400">return</span> hasil;
 }`,
-`<span class="c1">const</span> anggota = {
-    <span class="c3">semangat</span>: <span class="c2">'tinggi'</span>,
-    <span class="c3">belajar</span>: <span class="c2">'terus'</span>,
-    <span class="c3">gabung</span>: () => <span class="c2">'daftar.php'</span>
+`<span class="text-violet-400">const</span> anggota = {
+    <span class="text-primary">semangat</span>: <span class="text-mint">'tinggi'</span>,
+    <span class="text-primary">belajar</span>: <span class="text-mint">'terus'</span>,
+    <span class="text-primary">gabung</span>: () => <span class="text-mint">'daftar.php'</span>
 };`
 ];
 
@@ -182,8 +140,7 @@ function typeSnippet(text, callback) {
 
     function step() {
         i++;
-        let visible = visibleSlice(text, i);
-        el.innerHTML = visible;
+        el.innerHTML = visibleSlice(text, i);
         if (i < plainLength) {
             setTimeout(step, 22);
         } else {
@@ -231,8 +188,8 @@ function loopTyping() {
 }
 
 if (el) loopTyping();
-</script>
-<script>
+
+// Ganti teks badge LIVE
 const badgeQuotes = [
     "Semangat belajar, raih prestasi!",
     "Satu langkah kecil, sejuta manfaat",
@@ -249,5 +206,5 @@ setInterval(() => {
     badgeEl.style.animation = 'badgeFade 0.5s ease';
 }, 3000);
 </script>
-</body>
-</html>
+
+<?php include 'component/layout/footer.php'; ?>

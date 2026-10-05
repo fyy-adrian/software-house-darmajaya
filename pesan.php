@@ -1,34 +1,26 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pesan Website - Study Club Software House</title>
-<link rel="stylesheet" href="assets/css/style.css">
-</head>
-<body>
+<?php
+$judul = 'Pesan Website';
+include 'component/layout/head.php';
+?>
 
-<?php include 'component\layout\navbar\index.php'; ?>
-
-<section class="section">
-    <h2>Pesan Jasa Pembuatan Website</h2>
-    <div class="form-box">
+<?php section_open(); section_title('Pesan Jasa Pembuatan Website'); ?>
+    <div class="<?= ui('formBox') ?>">
         <?php if (isset($_GET['sukses'])): ?>
-            <div class="alert alert-success">Pesanan berhasil dikirim! Tim kami akan menghubungi kamu segera.</div>
+            <div class="<?= ui('alertOk') ?>">Pesanan berhasil dikirim! Tim kami akan menghubungi kamu segera.</div>
         <?php endif; ?>
 
         <form action="pesan_proses.php" method="POST">
-            <div class="form-group">
-                <label>Nama Lengkap</label>
-                <input type="text" name="nama" required>
+            <div class="<?= ui('group') ?>">
+                <label class="<?= ui('label') ?>" for="nama">Nama Lengkap</label>
+                <input class="<?= ui('input') ?>" type="text" id="nama" name="nama" required>
             </div>
-            <div class="form-group">
-                <label>Kontak (Email / No. WhatsApp)</label>
-                <input type="text" name="kontak" required>
+            <div class="<?= ui('group') ?>">
+                <label class="<?= ui('label') ?>" for="kontak">Kontak (Email / No. WhatsApp)</label>
+                <input class="<?= ui('input') ?>" type="text" id="kontak" name="kontak" required>
             </div>
-            <div class="form-group">
-                <label>Jenis Website</label>
-                <select name="jenis_web" required>
+            <div class="<?= ui('group') ?>">
+                <label class="<?= ui('label') ?>" for="jenis_web">Jenis Website</label>
+                <select class="<?= ui('input') ?>" id="jenis_web" name="jenis_web" required>
                     <option value="">-- Pilih Jenis Website --</option>
                     <option value="Landing Page">Landing Page</option>
                     <option value="Company Profile">Company Profile</option>
@@ -37,15 +29,13 @@
                     <option value="Lainnya">Lainnya</option>
                 </select>
             </div>
-            <div class="form-group">
-                <label>Deskripsi Kebutuhan</label>
-                <textarea name="deskripsi_kebutuhan" placeholder="Ceritain kebutuhan website kamu di sini..." required></textarea>
+            <div class="<?= ui('group') ?>">
+                <label class="<?= ui('label') ?>" for="deskripsi_kebutuhan">Deskripsi Kebutuhan</label>
+                <textarea class="<?= ui('input') ?> min-h-[90px] resize-y" id="deskripsi_kebutuhan" name="deskripsi_kebutuhan" placeholder="Ceritain kebutuhan website kamu di sini..." required></textarea>
             </div>
-            <button type="submit" class="btn" style="background:var(--primary);color:#fff;width:100%;">Kirim Pesanan</button>
+            <button type="submit" class="<?= ui('btn') ?> w-full">Kirim Pesanan</button>
         </form>
     </div>
-</section>
+<?php section_close(); ?>
 
-<footer>&copy; <?= date('Y') ?> Study Club Software House.</footer>
-</body>
-</html>
+<?php include 'component/layout/footer.php'; ?>

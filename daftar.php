@@ -1,52 +1,42 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Daftar Anggota - Study Club Software House</title>
-<link rel="stylesheet" href="assets/css/style.css">
-</head>
-<body>
+<?php
+$judul = 'Daftar Anggota';
+include 'component/layout/head.php';
+?>
 
-<?php include 'component\layout\navbar\index.php'; ?>
-
-<section class="section">
-    <h2>Form Pendaftaran Anggota</h2>
-    <div class="form-box">
+<?php section_open(); section_title('Form Pendaftaran Anggota'); ?>
+    <div class="<?= ui('formBox') ?>">
         <?php if (isset($_GET['sukses'])): ?>
-            <div class="alert alert-success">Pendaftaran berhasil dikirim! Kamu akan dihubungi lebih lanjut oleh admin.</div>
+            <div class="<?= ui('alertOk') ?>">Pendaftaran berhasil dikirim! Kamu akan dihubungi lebih lanjut oleh admin.</div>
         <?php endif; ?>
 
         <form action="daftar_proses.php" method="POST">
-            <div class="form-group">
-                <label>Nama Lengkap</label>
-                <input type="text" name="nama_lengkap" required>
+            <div class="<?= ui('group') ?>">
+                <label class="<?= ui('label') ?>" for="nama_lengkap">Nama Lengkap</label>
+                <input class="<?= ui('input') ?>" type="text" id="nama_lengkap" name="nama_lengkap" required>
             </div>
-            <div class="form-group">
-                <label>NIM</label>
-                <input type="text" name="nim" required>
+            <div class="<?= ui('group') ?>">
+                <label class="<?= ui('label') ?>" for="nim">NIM</label>
+                <input class="<?= ui('input') ?>" type="text" id="nim" name="nim" required>
             </div>
-            <div class="form-group">
-                <label>Jurusan</label>
-                <input type="text" name="jurusan" required>
+            <div class="<?= ui('group') ?>">
+                <label class="<?= ui('label') ?>" for="jurusan">Jurusan</label>
+                <input class="<?= ui('input') ?>" type="text" id="jurusan" name="jurusan" required>
             </div>
-            <div class="form-group">
-                <label>Email</label>
-                <input type="email" name="email" required>
+            <div class="<?= ui('group') ?>">
+                <label class="<?= ui('label') ?>" for="email">Email</label>
+                <input class="<?= ui('input') ?>" type="email" id="email" name="email" required>
             </div>
-            <div class="form-group">
-                <label>No. HP / WhatsApp</label>
-                <input type="text" name="no_hp" required>
+            <div class="<?= ui('group') ?>">
+                <label class="<?= ui('label') ?>" for="no_hp">No. HP / WhatsApp</label>
+                <input class="<?= ui('input') ?>" type="text" id="no_hp" name="no_hp" required>
             </div>
-            <div class="form-group">
-                <label>Alasan Ingin Bergabung</label>
-                <textarea name="alasan_gabung"></textarea>
+            <div class="<?= ui('group') ?>">
+                <label class="<?= ui('label') ?>" for="alasan_gabung">Alasan Ingin Bergabung</label>
+                <textarea class="<?= ui('input') ?> min-h-[90px] resize-y" id="alasan_gabung" name="alasan_gabung"></textarea>
             </div>
-            <button type="submit" class="btn" style="background:var(--primary);color:#fff;width:100%;">Kirim Pendaftaran</button>
+            <button type="submit" class="<?= ui('btn') ?> w-full">Kirim Pendaftaran</button>
         </form>
     </div>
-</section>
+<?php section_close(); ?>
 
-<footer>&copy; <?= date('Y') ?> Study Club Software House.</footer>
-</body>
-</html>
+<?php include 'component/layout/footer.php'; ?>

@@ -586,6 +586,13 @@ table td { color: #cbd2dd; }
 .timeline-content h3 { color: #fff; font-size: 1.05rem; margin-bottom: 6px; }
 .timeline-content p { color: var(--text-muted); font-size: .9rem; line-height: 1.6; }
 
+.non-data{
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 1rem;
+    padding: 40px 0;
+}
+
 /* =========================================================
    RESPONSIVE
    ========================================================= */

@@ -2,41 +2,34 @@
 include 'config/koneksi.php';
 $id = intval($_GET['id'] ?? 0);
 $q = mysqli_query($koneksi, "SELECT * FROM berita WHERE id = $id");
-$berita = mysqli_fetch_assoc($q);
-if (!$berita) { die("Berita tidak ditemukan. <a href='berita.php'>Kembali</a>"); }
+$berita = $q ? mysqli_fetch_assoc($q) : null;
+
+if (!$berita) {
+    http_response_code(404);
+    $judul = 'Berita tidak ditemukan';
+    include 'component/layout/head.php';
+    section_open();
+    empty_state('🔍', 'Berita tidak ditemukan', 'Berita yang kamu cari mungkin sudah dihapus atau link-nya salah.', 'berita.php', 'Lihat Semua Berita');
+    section_close();
+    include 'component/layout/footer.php';
+    exit;
+}
+
 $gambar = $berita['gambar'] ? 'uploads/berita/' . $berita['gambar'] : null;
+$judul = $berita['judul'];
+include 'component/layout/head.php';
 ?>
-<!DOCTYPE html>
-<html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title><?= htmlspecialchars($berita['judul']) ?></title>
-<link rel="stylesheet" href="assets/css/style.css">
-</head>
-<body>
 
-<nav class="navbar">
-    <div class="logo"><span class="mark">SC</span>Study<span>Club</span></div>
-    <ul>
-        <li><a href="index.php">Beranda</a></li>
-        <li><a href="berita.php">Berita</a></li>
-        <li><a href="karya.php">Karya Mahasiswa</a></li>
-        <li><a href="daftar.php">Daftar Anggota</a></li>
-    </ul>
-</nav>
+<?php section_open(); ?>
+    <article class="mx-auto max-w-[800px]">
+        <h1 class="mb-2 text-left text-[clamp(1.35rem,3.5vw,1.7rem)] font-semibold"><?= htmlspecialchars($berita['judul']) ?></h1>
+        <p class="mb-5 text-[#9ca3af]"><?= date('d M Y H:i', strtotime($berita['tanggal'])) ?></p>
+        <?php if ($gambar): ?>
+            <img src="<?= htmlspecialchars($gambar) ?>" alt="<?= htmlspecialchars($berita['judul']) ?>" class="mb-5 w-full rounded-xl">
+        <?php endif; ?>
+        <p class="whitespace-pre-line"><?= htmlspecialchars($berita['isi']) ?></p>
+        <a href="berita.php" class="<?= ui('btn') ?> mt-6">&larr; Kembali ke Berita</a>
+    </article>
+<?php section_close(); ?>
 
-<section class="section" style="max-width:800px;margin:0 auto;">
-    <h2 style="text-align:left;"><?= htmlspecialchars($berita['judul']) ?></h2>
-    <p style="color:#9ca3af;margin-bottom:20px;"><?= date('d M Y H:i', strtotime($berita['tanggal'])) ?></p>
-    <?php if ($gambar): ?>
-        <img src="<?= htmlspecialchars($gambar) ?>" style="width:100%;border-radius:12px;margin-bottom:20px;">
-    <?php endif; ?>
-    <p style="white-space:pre-line;"><?= htmlspecialchars($berita['isi']) ?></p>
-    <br>
-    <a href="berita.php" class="btn btn-primary" style="background:var(--primary);color:#fff;">&larr; Kembali ke Berita</a>
-</section>
-
-<footer>&copy; <?= date('Y') ?> Study Club Software House.</footer>
-</body>
-</html>
+<?php include 'component/layout/footer.php'; ?>
