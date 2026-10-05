@@ -1,6 +1,6 @@
 <?php
 $judul = 'Daftar Anggota';
-include 'component/layout/head.php';
+include 'components/layout/head.php';
 ?>
 
 <?php section_open(); section_title('Form Pendaftaran Anggota'); ?>
@@ -39,4 +39,4 @@ include 'component/layout/head.php';
     </div>
 <?php section_close(); ?>
 
-<?php include 'component/layout/footer.php'; ?>
+<?php include 'components/layout/footer.php'; ?>

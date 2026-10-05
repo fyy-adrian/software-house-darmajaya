@@ -1,7 +1,7 @@
 <?php
 include 'config/koneksi.php';
 $judul = 'Pendiri';
-include 'component/layout/head.php';
+include 'components/layout/head.php';
 
 // Ubah data di sini. Kosongkan array kalau datanya belum ada.
 $pendiri = [
@@ -32,4 +32,4 @@ $pengurus = [
 
 <?php section_close(); ?>
 
-<?php include 'component/layout/footer.php'; ?>
+<?php include 'components/layout/footer.php'; ?>

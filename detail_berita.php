@@ -7,17 +7,17 @@ $berita = $q ? mysqli_fetch_assoc($q) : null;
 if (!$berita) {
     http_response_code(404);
     $judul = 'Berita tidak ditemukan';
-    include 'component/layout/head.php';
+    include 'components/layout/head.php';
     section_open();
     empty_state('🔍', 'Berita tidak ditemukan', 'Berita yang kamu cari mungkin sudah dihapus atau link-nya salah.', 'berita.php', 'Lihat Semua Berita');
     section_close();
-    include 'component/layout/footer.php';
+    include 'components/layout/footer.php';
     exit;
 }
 
 $gambar = $berita['gambar'] ? 'uploads/berita/' . $berita['gambar'] : null;
 $judul = $berita['judul'];
-include 'component/layout/head.php';
+include 'components/layout/head.php';
 ?>
 
 <?php section_open(); ?>
@@ -32,4 +32,4 @@ include 'component/layout/head.php';
     </article>
 <?php section_close(); ?>
 
-<?php include 'component/layout/footer.php'; ?>
+<?php include 'components/layout/footer.php'; ?>

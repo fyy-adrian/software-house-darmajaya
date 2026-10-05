@@ -1,7 +1,7 @@
 <?php
 include 'config/koneksi.php';
 $judul = 'Dokumentasi & Pengumuman';
-include 'component/layout/head.php';
+include 'components/layout/head.php';
 ?>
 
 <?php section_open(); section_title('Dokumentasi & Pengumuman'); ?>
@@ -29,4 +29,4 @@ include 'component/layout/head.php';
     </div>
 <?php section_close(); ?>
 
-<?php include 'component/layout/footer.php'; ?>
+<?php include 'components/layout/footer.php'; ?>

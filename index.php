@@ -2,7 +2,7 @@
 include 'config/koneksi.php';
 $judul = null; // beranda pakai judul default
 $footerExtra = ' Dibuat untuk belajar.';
-include 'component/layout/head.php';
+include 'components/layout/head.php';
 ?>
 
 <!-- Ticker -->
@@ -207,4 +207,4 @@ setInterval(() => {
 }, 3000);
 </script>
 
-<?php include 'component/layout/footer.php'; ?>
+<?php include 'components/layout/footer.php'; ?>

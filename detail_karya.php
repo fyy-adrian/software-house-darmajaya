@@ -7,17 +7,17 @@ $karya = $q ? mysqli_fetch_assoc($q) : null;
 if (!$karya) {
     http_response_code(404);
     $judul = 'Karya tidak ditemukan';
-    include 'component/layout/head.php';
+    include 'components/layout/head.php';
     section_open();
     empty_state('🔍', 'Karya tidak ditemukan', 'Karya yang kamu cari mungkin sudah dihapus atau link-nya salah.', 'karya.php', 'Lihat Semua Karya');
     section_close();
-    include 'component/layout/footer.php';
+    include 'components/layout/footer.php';
     exit;
 }
 
 $gambar = $karya['gambar'] ? 'uploads/karya/' . $karya['gambar'] : null;
 $judul = $karya['judul_karya'];
-include 'component/layout/head.php';
+include 'components/layout/head.php';
 ?>
 
 <?php section_open(); ?>
@@ -37,4 +37,4 @@ include 'component/layout/head.php';
     </article>
 <?php section_close(); ?>
 
-<?php include 'component/layout/footer.php'; ?>
+<?php include 'components/layout/footer.php'; ?>

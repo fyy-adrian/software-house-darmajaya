@@ -1,7 +1,7 @@
 <?php
 include 'config/koneksi.php';
 $judul = 'Tentang Kami';
-include 'component/layout/head.php';
+include 'components/layout/head.php';
 
 $sejarah = [
     ['2023', 'Awal Terbentuk',        'Study Club dimulai dari inisiatif beberapa mahasiswa yang rutin belajar bareng, membahas project sederhana, dan saling bantu tugas pemrograman.'],
@@ -35,4 +35,4 @@ $sejarah = [
 
 <?php section_close(); ?>
 
-<?php include 'component/layout/footer.php'; ?>
+<?php include 'components/layout/footer.php'; ?>
