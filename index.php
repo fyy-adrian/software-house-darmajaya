@@ -3,12 +3,14 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Study Club Software House</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="assets/css/style.css?v=2">
 </head>
 <body>
 
-<?php include 'navbar.php'; ?>
+<?php include 'component\layout\navbar\index.php'; ?>
 
 <div class="ticker-wrap">
     <div class="ticker">

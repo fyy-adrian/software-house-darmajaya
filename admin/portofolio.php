@@ -9,6 +9,7 @@ $q = mysqli_query($koneksi, "SELECT * FROM portofolio_anggota ORDER BY tanggal D
 <html lang="id">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kelola Portofolio Anggota</title>
 <link rel="stylesheet" href="../assets/css/style.css">
 </head>

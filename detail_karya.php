@@ -10,6 +10,7 @@ $gambar = $karya['gambar'] ? 'uploads/karya/' . $karya['gambar'] : null;
 <html lang="id">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title><?= htmlspecialchars($karya['judul_karya']) ?></title>
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
