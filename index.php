@@ -40,7 +40,7 @@ include 'components/layout/head.php';
 
 <!-- Kenapa Gabung -->
 <?php section_open('surface'); section_title('Kenapa Gabung Study Club?'); ?>
-    <div class="<?= ui('grid') ?>">
+    <div class="<?= ui('grid-3') ?>">
         <?php
         $fitur = [
             ['&lt;/&gt;',  'Belajar Bareng',      'Sharing session rutin seputar bahasa pemrograman, framework, dan tools yang dipakai di industri.'],

@@ -11,7 +11,9 @@ function ui($key) {
         'btnOutline'  => 'inline-block cursor-pointer rounded-lg border-[1.5px] border-line bg-transparent px-6 py-3 text-center font-semibold text-white transition duration-200 hover:-translate-y-0.5 hover:border-primary',
         'btnSm'       => 'inline-block rounded-md bg-primary px-3.5 py-1.5 text-[.82rem] font-semibold text-[#171a21] transition hover:brightness-110',
         // layout
-        'grid'        => 'grid grid-cols-[repeat(auto-fit,minmax(min(100%,260px),340px))] justify-start gap-[18px] sm:gap-6',
+        'grid'        => 'grid grid-cols-[repeat(auto-fit,minmax(min(100%,260px),340px))] justify-center gap-[18px] sm:gap-6',
+        'grid-3'      => 'grid grid-cols-1 gap-[18px] sm:gap-6 md:grid-cols-3',
+        'grid-start'  => 'grid grid-cols-[repeat(auto-fit,minmax(min(100%,260px),340px))] justify-start gap-[18px] sm:gap-6',
         'rosterGrid'  => 'grid grid-cols-[repeat(auto-fit,minmax(min(100%,240px),280px))] justify-center gap-[18px] sm:gap-[22px]',
         'contactGrid' => 'grid grid-cols-[repeat(auto-fit,minmax(min(100%,220px),260px))] justify-center gap-[18px] sm:gap-6',
         // kartu
